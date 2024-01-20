@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Clicks;
+use App\Entity\UrlRecord;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -21,28 +22,16 @@ class ClicksRepository extends ServiceEntityRepository
         parent::__construct($registry, Clicks::class);
     }
 
-//    /**
-//     * @return Clicks[] Returns an array of Clicks objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
 
-//    public function findOneBySomeField($value): ?Clicks
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function GetByDateAndUrl(UrlRecord $urlRecord, \DateTimeInterface $dateTime)
+    {
+        return $this->createQueryBuilder('clicks')
+            ->select()
+            ->where('clicks.urlRecord = :url_record')
+            ->setParameter('url_record', $urlRecord)
+            ->andWhere('clicks.Date = :clicks_Date')
+            ->setParameter('clicks_Date', $dateTime->format('Y-m-d'))
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

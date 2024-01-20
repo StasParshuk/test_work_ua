@@ -7,8 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UrlRecordRepository::class)]
+#[UniqueEntity(fields: ['shortCode'], message: 'Short Code Unique')]
 class UrlRecord
 {
     #[ORM\Id]
@@ -17,15 +20,21 @@ class UrlRecord
     private ?int $id = null;
 
     #[ORM\Column(length: 2048)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: '7', max: 2048, minMessage: 'Url too short content', maxMessage: 'Url too long')]
+    #[Assert\Url(message: 'Url not valid')]
     private ?string $originalUrl = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: '1', max: 255, minMessage: 'Short Code too short content', maxMessage: 'Short Code too long')]
     private ?string $shortCode = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\NotBlank]
     private ?\DateTimeInterface $expirationTime = null;
 
-    #[ORM\OneToMany(mappedBy: 'urlRecord', targetEntity: Clicks::class)]
+    #[ORM\OneToMany(mappedBy: 'urlRecord', targetEntity: Clicks::class, cascade: ['persist'], orphanRemoval: true)]
     private Collection $clicks;
 
     public function __construct()

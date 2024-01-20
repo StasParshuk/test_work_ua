@@ -18,6 +18,7 @@ final class ClicksAdmin extends AbstractAdmin
             ->add('id')
             ->add('CountClicks')
             ->add('Date')
+            ->add('urlRecord')
         ;
     }
 

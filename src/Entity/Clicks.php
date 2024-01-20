@@ -63,4 +63,12 @@ class Clicks
 
         return $this;
     }
+
+    /**
+     * Збільшує лічильник переходів
+     */
+    public function incrementClicksCount(): void
+    {
+        $this->CountClicks++;
+    }
 }

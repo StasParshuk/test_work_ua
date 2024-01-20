@@ -26,9 +26,9 @@ services:
     admin.clicks:
         class: App\Admin\ClicksAdmin
         tags:
-            - { name: sonata.admin, model_class: App\Entity\Clicks, controller: App\Controller\ClicksAdminController, manager_type: orm, group: admin, label: Clicks }
+            - { name: sonata.admin, model_class: App\Entity\Clicks, controller: ~, manager_type: orm, group: admin, label: Clicks }
 
     admin.url_record:
         class: App\Admin\UrlRecordAdmin
         tags:
-            - { name: sonata.admin, model_class: App\Entity\UrlRecord, controller: App\Controller\UrlRecordAdminController, manager_type: orm, group: admin, label: UrlRecord }
+            - { name: sonata.admin, model_class: App\Entity\UrlRecord, controller: ~, manager_type: orm, group: admin, label: UrlRecord }
