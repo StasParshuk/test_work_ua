@@ -105,4 +105,9 @@ class UrlRecord
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->shortCode ?? 'Not Found';
+    }
 }

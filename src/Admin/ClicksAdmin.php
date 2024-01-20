@@ -27,6 +27,7 @@ final class ClicksAdmin extends AbstractAdmin
             ->add('id')
             ->add('CountClicks')
             ->add('Date')
+            ->add('urlRecord')
             ->add(ListMapper::NAME_ACTIONS, null, [
                 'actions' => [
                     'show' => [],
@@ -39,9 +40,9 @@ final class ClicksAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $form): void
     {
         $form
-            ->add('id')
             ->add('CountClicks')
             ->add('Date')
+            ->add('urlRecord')
         ;
     }
 
@@ -51,6 +52,7 @@ final class ClicksAdmin extends AbstractAdmin
             ->add('id')
             ->add('CountClicks')
             ->add('Date')
+            ->add('urlRecord')
         ;
     }
 }

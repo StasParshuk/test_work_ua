@@ -41,7 +41,6 @@ final class UrlRecordAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $form): void
     {
         $form
-            ->add('id')
             ->add('originalUrl')
             ->add('shortCode')
             ->add('expirationTime')
