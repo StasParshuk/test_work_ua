@@ -1,8 +1,16 @@
 sonata_admin:
-    title: 'Sonata Admin'
+    title: 'Minimization URL'
     dashboard:
         blocks:
-            - { type: sonata.admin.block.admin_list, position: left }
+            - { type: sonata.admin.block.admin_list, position: left, }
+        groups:
+            admin.clicks:
+              label: Configuration
+              icon: '<i class="fa fa-picture-o"></i>'
+              item:
+                - admin.clicks
+                - admin.url_record
+
 
 sonata_block:
     blocks:
